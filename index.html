@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WealthRx — Find Deductions. Organize Books. Stay Tax-Ready.</title>
   <meta name="description" content="WealthRx connects to your bank and automatically finds tax deductions, organizes your books, and keeps you audit-ready — without hiring an accountant.">
+  <meta property="og:title" content="WealthRx — Find Deductions. Organize Books. Stay Tax-Ready.">
+  <meta property="og:description" content="AI-powered tax deduction tracker for small business owners. Connect your bank, find deductions, stay tax-ready.">
+  <meta property="og:url" content="https://wealthrx.ai">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="/icon-192.png">
+  <link rel="apple-touch-icon" href="/icon-192.png">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,220 +27,83 @@
       --red: #E86B6B;
     }
     html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg); color: var(--text);
-      font-family: 'DM Sans', sans-serif; font-weight: 400;
-      line-height: 1.6; overflow-x: hidden;
-    }
-    .serif { font-family: 'Instrument Serif', serif; font-weight: 400; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; line-height: 1.6; overflow-x: hidden; }
     a { color: inherit; text-decoration: none; }
     .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 18px 24px; background: rgba(10,14,13,0.8);
-      backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: 1120px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center;
-    }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 18px 24px; background: rgba(10,14,13,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
     .logo { display: flex; align-items: center; gap: 10px; }
-    .logo-icon {
-      width: 36px; height: 36px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--green-deep), var(--green-primary));
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 2px 12px rgba(13,124,95,0.3);
-    }
+    .logo-icon { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--green-deep), var(--green-primary)); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(13,124,95,0.3); }
     .logo-text .wealth { font-family: 'Instrument Serif', serif; font-size: 22px; }
     .logo-text .rx { font-weight: 700; font-size: 19px; color: var(--green-primary); }
     .nav-right { display: flex; align-items: center; gap: 14px; }
-    .nav-link {
-      font-size: 14px; color: var(--text-dim); font-weight: 500;
-      padding: 8px 4px; transition: color 0.2s;
-    }
+    .nav-link { font-size: 14px; color: var(--text-dim); font-weight: 500; padding: 8px 4px; transition: color 0.2s; }
     .nav-link:hover { color: var(--text); }
-    .btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: 600;
-      cursor: pointer; border: none; transition: all 0.2s;
-      font-family: 'DM Sans', sans-serif;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--green-deep), var(--green-primary));
-      color: var(--text); box-shadow: 0 2px 16px rgba(13,124,95,0.3);
-    }
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; font-family: inherit; }
+    .btn-primary { background: linear-gradient(135deg, var(--green-deep), var(--green-primary)); color: var(--text); box-shadow: 0 2px 16px rgba(13,124,95,0.3); }
     .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(13,124,95,0.45); }
-    .btn-secondary {
-      background: transparent; color: var(--text);
-      border: 1px solid rgba(250,250,248,0.15);
-    }
+    .btn-secondary { background: transparent; color: var(--text); border: 1px solid rgba(250,250,248,0.15); }
     .btn-secondary:hover { border-color: rgba(250,250,248,0.3); background: rgba(250,250,248,0.04); }
     .btn-large { padding: 14px 28px; font-size: 15px; }
 
-    /* HERO */
-    .hero {
-      padding: 140px 24px 80px; text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 800px; height: 800px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(16,163,127,0.08) 0%, transparent 60%);
-      pointer-events: none;
-    }
+    .hero { padding: 140px 24px 80px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(16,163,127,0.08) 0%, transparent 60%); pointer-events: none; }
     .hero-content { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 14px; border-radius: 100px;
-      background: rgba(16,163,127,0.1); border: 1px solid rgba(16,163,127,0.2);
-      color: var(--green-primary); font-size: 13px; font-weight: 600;
-      margin-bottom: 24px; letter-spacing: 0.3px;
-    }
-    .hero-eyebrow::before {
-      content: ''; width: 6px; height: 6px; border-radius: 50%;
-      background: var(--green-primary); animation: pulse 2s infinite;
-    }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 100px; background: rgba(16,163,127,0.1); border: 1px solid rgba(16,163,127,0.2); color: var(--green-primary); font-size: 13px; font-weight: 600; margin-bottom: 24px; }
+    .hero-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green-primary); animation: pulse 2s infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-    .hero h1 {
-      font-family: 'Instrument Serif', serif; font-weight: 400;
-      font-size: clamp(36px, 6vw, 64px); line-height: 1.1;
-      letter-spacing: -1.5px; margin-bottom: 24px;
-    }
+    .hero h1 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(36px, 6vw, 64px); line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 24px; }
     .hero h1 .accent { color: var(--green-primary); font-style: italic; }
-    .hero-sub {
-      font-size: clamp(16px, 1.6vw, 19px); color: var(--text-dim);
-      max-width: 620px; margin: 0 auto 36px; font-weight: 300; line-height: 1.55;
-    }
+    .hero-sub { font-size: clamp(16px, 1.6vw, 19px); color: var(--text-dim); max-width: 620px; margin: 0 auto 36px; font-weight: 300; line-height: 1.55; }
     .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .hero-trust {
-      margin-top: 32px; display: flex; align-items: center; justify-content: center; gap: 24px;
-      color: var(--text-faint); font-size: 13px; flex-wrap: wrap;
-    }
-    .hero-trust-item { display: flex; align-items: center; gap: 6px; }
+    .hero-trust { margin-top: 32px; display: flex; align-items: center; justify-content: center; gap: 24px; color: var(--text-faint); font-size: 13px; flex-wrap: wrap; }
 
-    /* WHO IT'S FOR */
-    .audience {
-      padding: 48px 24px; border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .audience-inner {
-      max-width: 1120px; margin: 0 auto; text-align: center;
-    }
-    .audience-label {
-      font-size: 12px; color: var(--text-faint); text-transform: uppercase;
-      letter-spacing: 2.5px; margin-bottom: 16px; font-weight: 500;
-    }
-    .audience-list {
-      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
-      font-size: 15px; color: var(--text-dim);
-    }
+    .waitlist-counter { margin-top: 20px; display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; background: rgba(250,250,248,0.04); border: 1px solid rgba(250,250,248,0.06); border-radius: 100px; font-size: 13px; color: var(--text-dim); }
+    .avatars { display: flex; }
+    .avatar { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--bg); margin-left: -6px; background: linear-gradient(135deg, #10A37F, #0D7C5F); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: white; }
+    .avatar:first-child { margin-left: 0; background: linear-gradient(135deg, #4A90E2, #2C5AA0); }
+    .avatar:nth-child(2) { background: linear-gradient(135deg, #E8B84A, #C99A2E); }
+    .avatar:nth-child(3) { background: linear-gradient(135deg, #E86B6B, #C84545); }
+    .avatar:nth-child(4) { background: linear-gradient(135deg, #A584E2, #7B5AC5); }
+
+    .audience { padding: 48px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .audience-inner { max-width: 1120px; margin: 0 auto; text-align: center; }
+    .audience-label { font-size: 12px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 16px; font-weight: 500; }
+    .audience-list { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; font-size: 15px; color: var(--text-dim); }
     .audience-list span { display: flex; align-items: center; gap: 6px; }
-    .audience-list span::before {
-      content: '•'; color: var(--green-primary); font-weight: 700;
-    }
+    .audience-list span::before { content: '•'; color: var(--green-primary); font-weight: 700; }
 
-    /* HOW IT WORKS */
     .section { padding: 100px 24px; }
-    .section-eyebrow {
-      display: inline-block; padding: 6px 14px; border-radius: 100px;
-      background: rgba(16,163,127,0.08); color: var(--green-primary);
-      font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
-      text-transform: uppercase; margin-bottom: 16px;
-    }
-    .section h2 {
-      font-family: 'Instrument Serif', serif; font-weight: 400;
-      font-size: clamp(32px, 4.5vw, 48px); line-height: 1.15;
-      letter-spacing: -1px; margin-bottom: 16px;
-    }
+    .section-eyebrow { display: inline-block; padding: 6px 14px; border-radius: 100px; background: rgba(16,163,127,0.08); color: var(--green-primary); font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; }
+    .section h2 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(32px, 4.5vw, 48px); line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px; }
     .section-header { text-align: center; max-width: 720px; margin: 0 auto 64px; }
-    .section-sub {
-      font-size: 17px; color: var(--text-dim);
-      font-weight: 300; line-height: 1.55;
-    }
+    .section-sub { font-size: 17px; color: var(--text-dim); font-weight: 300; line-height: 1.55; }
 
-    .steps {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 20px; max-width: 1120px; margin: 0 auto;
-    }
-    .step {
-      padding: 32px; border-radius: 16px;
-      background: var(--surface); border: 1px solid var(--border);
-      position: relative; transition: all 0.3s;
-    }
-    .step:hover {
-      border-color: rgba(16,163,127,0.2);
-      background: rgba(16,163,127,0.02);
-      transform: translateY(-2px);
-    }
-    .step-num {
-      font-family: 'Instrument Serif', serif; font-size: 44px;
-      color: var(--green-primary); line-height: 1; margin-bottom: 16px;
-      opacity: 0.85;
-    }
-    .step h3 {
-      font-family: 'Instrument Serif', serif; font-weight: 400;
-      font-size: 22px; margin-bottom: 10px;
-    }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1120px; margin: 0 auto; }
+    .step { padding: 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); transition: all 0.3s; }
+    .step:hover { border-color: rgba(16,163,127,0.2); background: rgba(16,163,127,0.02); transform: translateY(-2px); }
+    .step-num { font-family: 'Instrument Serif', serif; font-size: 44px; color: var(--green-primary); line-height: 1; margin-bottom: 16px; opacity: 0.85; }
+    .step h3 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 22px; margin-bottom: 10px; }
     .step p { color: var(--text-dim); font-size: 15px; font-weight: 300; }
 
-    /* PRODUCT PREVIEW (FAKE DASHBOARD) */
     .preview-section { padding: 80px 24px; }
-    .preview-wrap {
-      max-width: 1080px; margin: 0 auto;
-      background: linear-gradient(180deg, rgba(16,163,127,0.06), transparent);
-      border-radius: 24px; padding: 40px 24px 0;
-      border: 1px solid var(--border); border-bottom: none;
-      position: relative;
-    }
-    .preview-wrap::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
-      background: linear-gradient(180deg, transparent, var(--bg));
-      pointer-events: none;
-    }
-    .preview-dashboard {
-      background: #0D1110; border: 1px solid rgba(250,250,248,0.08);
-      border-radius: 12px; overflow: hidden;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.4);
-      max-width: 960px; margin: 0 auto;
-    }
-    .preview-header {
-      padding: 14px 20px; background: rgba(250,250,248,0.02);
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: 8px;
-    }
+    .preview-wrap { max-width: 1080px; margin: 0 auto; background: linear-gradient(180deg, rgba(16,163,127,0.06), transparent); border-radius: 24px; padding: 40px 24px 0; border: 1px solid var(--border); border-bottom: none; position: relative; }
+    .preview-wrap::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: linear-gradient(180deg, transparent, var(--bg)); pointer-events: none; }
+    .preview-dashboard { background: #0D1110; border: 1px solid rgba(250,250,248,0.08); border-radius: 12px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.4); max-width: 960px; margin: 0 auto; }
+    .preview-header { padding: 14px 20px; background: rgba(250,250,248,0.02); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
     .preview-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(250,250,248,0.2); }
-    .preview-dot.red { background: #ff6b6b; }
-    .preview-dot.yellow { background: #ffc107; }
-    .preview-dot.green { background: #10A37F; }
+    .preview-dot.red { background: #ff6b6b; } .preview-dot.yellow { background: #ffc107; } .preview-dot.green { background: #10A37F; }
     .preview-body { padding: 28px; }
-    .preview-vitals {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 10px; margin-bottom: 20px;
-    }
-    .preview-vital {
-      padding: 14px; background: rgba(250,250,248,0.02);
-      border: 1px solid var(--border); border-radius: 10px;
-    }
-    .pv-label {
-      font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--text-faint); margin-bottom: 4px; font-weight: 500;
-    }
+    .preview-vitals { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+    .preview-vital { padding: 14px; background: rgba(250,250,248,0.02); border: 1px solid var(--border); border-radius: 10px; }
+    .pv-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-faint); margin-bottom: 4px; font-weight: 500; }
     .pv-value { font-family: 'Instrument Serif', serif; font-size: 22px; }
     .pv-value.green { color: var(--green-primary); }
     .preview-txns { display: flex; flex-direction: column; gap: 6px; }
-    .preview-tx {
-      padding: 12px 14px; background: rgba(250,250,248,0.015);
-      border: 1px solid var(--border); border-radius: 10px;
-      display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    }
+    .preview-tx { padding: 12px 14px; background: rgba(250,250,248,0.015); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
     .ptx-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
-    .ptx-icon {
-      width: 28px; height: 28px; border-radius: 7px;
-      display: flex; align-items: center; justify-content: center; font-size: 13px;
-      flex-shrink: 0;
-    }
+    .ptx-icon { width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
     .ptx-icon.green { background: rgba(16,163,127,0.14); }
     .ptx-icon.yellow { background: rgba(232,184,74,0.14); }
     .ptx-icon.red { background: rgba(232,107,107,0.1); }
@@ -242,254 +111,172 @@
     .ptx-cat { font-size: 11px; color: var(--text-faint); }
     .ptx-right { text-align: right; flex-shrink: 0; }
     .ptx-amt { font-size: 13px; font-weight: 600; }
-    .ptx-tag {
-      display: inline-block; padding: 2px 7px; border-radius: 100px;
-      font-size: 9px; font-weight: 700; margin-top: 3px; letter-spacing: 0.3px;
-    }
+    .ptx-tag { display: inline-block; padding: 2px 7px; border-radius: 100px; font-size: 9px; font-weight: 700; margin-top: 3px; letter-spacing: 0.3px; }
     .ptx-tag.green { background: rgba(16,163,127,0.14); color: var(--green-primary); }
     .ptx-tag.yellow { background: rgba(232,184,74,0.14); color: var(--yellow); }
     .ptx-tag.red { background: rgba(232,107,107,0.1); color: var(--red); }
 
-    /* HOW AI DECIDES (TRUST BLOCK) */
     .trust-section { padding: 100px 24px; background: rgba(250,250,248,0.01); }
-    .trust-grid {
-      display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center;
-      max-width: 1120px; margin: 0 auto;
-    }
-    .trust-card {
-      background: #0D1110; border: 1px solid rgba(250,250,248,0.08);
-      border-radius: 16px; overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    }
-    .trust-card-header {
-      padding: 16px 20px; background: rgba(250,250,248,0.02);
-      border-bottom: 1px solid var(--border);
-      font-size: 13px; font-weight: 600; color: var(--text-dim);
-      display: flex; align-items: center; gap: 8px;
-    }
+    .trust-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; max-width: 1120px; margin: 0 auto; }
+    .trust-card { background: #0D1110; border: 1px solid rgba(250,250,248,0.08); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+    .trust-card-header { padding: 16px 20px; background: rgba(250,250,248,0.02); border-bottom: 1px solid var(--border); font-size: 13px; font-weight: 600; color: var(--text-dim); display: flex; align-items: center; gap: 8px; }
     .trust-card-body { padding: 20px; }
-    .trust-tx-main {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px; background: rgba(232,184,74,0.05);
-      border: 1px solid rgba(232,184,74,0.15); border-radius: 10px;
-      margin-bottom: 12px; gap: 12px;
-    }
-    .irs-panel {
-      background: rgba(16,163,127,0.06); border: 1px solid rgba(16,163,127,0.15);
-      border-radius: 10px; padding: 14px;
-    }
-    .irs-panel-header {
-      display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
-      font-size: 13px; font-weight: 600; color: var(--green-primary);
-    }
+    .trust-tx-main { display: flex; align-items: center; justify-content: space-between; padding: 14px; background: rgba(232,184,74,0.05); border: 1px solid rgba(232,184,74,0.15); border-radius: 10px; margin-bottom: 12px; gap: 12px; }
+    .irs-panel { background: rgba(16,163,127,0.06); border: 1px solid rgba(16,163,127,0.15); border-radius: 10px; padding: 14px; }
+    .irs-panel-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 13px; font-weight: 600; color: var(--green-primary); }
     .irs-panel-text { font-size: 13px; color: var(--text-dim); line-height: 1.5; margin-bottom: 8px; }
     .irs-panel-link { font-size: 12px; color: var(--green-primary); font-weight: 600; }
     .review-btns { display: flex; gap: 8px; margin-top: 12px; }
-    .rev-btn {
-      flex: 1; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 600;
-      text-align: center; font-family: inherit;
-    }
+    .rev-btn { flex: 1; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; text-align: center; font-family: inherit; }
     .rev-btn.yes { background: rgba(16,163,127,0.14); color: var(--green-primary); border: 1px solid rgba(16,163,127,0.25); }
     .rev-btn.no { background: rgba(232,107,107,0.08); color: var(--red); border: 1px solid rgba(232,107,107,0.15); }
 
-    /* BENEFITS */
-    .benefits {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
-      max-width: 1120px; margin: 0 auto;
-    }
-    .benefit {
-      padding: 28px; background: var(--surface);
-      border: 1px solid var(--border); border-radius: 16px;
-      display: flex; gap: 18px; align-items: flex-start;
-      transition: all 0.3s;
-    }
-    .benefit:hover {
-      border-color: rgba(16,163,127,0.2);
-      background: rgba(16,163,127,0.02);
-    }
-    .benefit-icon {
-      width: 44px; height: 44px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--green-deep), var(--green-primary));
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .benefit h3 {
-      font-family: 'Instrument Serif', serif; font-weight: 400;
-      font-size: 20px; margin-bottom: 6px;
-    }
+    .benefits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 1120px; margin: 0 auto; }
+    .benefit { padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; display: flex; gap: 18px; align-items: flex-start; transition: all 0.3s; }
+    .benefit:hover { border-color: rgba(16,163,127,0.2); background: rgba(16,163,127,0.02); }
+    .benefit-icon { width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, var(--green-deep), var(--green-primary)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .benefit h3 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 20px; margin-bottom: 6px; }
     .benefit p { color: var(--text-dim); font-size: 14px; font-weight: 300; line-height: 1.55; }
 
-    /* PRICING */
-    .pricing-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
-      max-width: 820px; margin: 0 auto;
-    }
-    .price-card {
-      padding: 40px 32px; background: var(--surface);
-      border: 1px solid var(--border); border-radius: 20px;
-      position: relative;
-    }
-    .price-card.featured {
-      border-color: rgba(16,163,127,0.3);
-      background: linear-gradient(180deg, rgba(16,163,127,0.06), rgba(16,163,127,0.01));
-    }
-    .price-badge {
-      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-      padding: 4px 14px; background: var(--green-primary); color: var(--bg);
-      border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
-    }
+    .founder-section { padding: 100px 24px; background: radial-gradient(circle at 30% 50%, rgba(16,163,127,0.04), transparent 60%); }
+    .founder-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: center; }
+    .founder-avatar { width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, var(--green-deep), var(--green-primary)); display: flex; align-items: center; justify-content: center; font-family: 'Instrument Serif', serif; font-size: 56px; color: white; flex-shrink: 0; box-shadow: 0 10px 40px rgba(13,124,95,0.3); }
+    .founder-content h2 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 36px; line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.5px; }
+    .founder-role { color: var(--green-primary); font-size: 14px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+    .founder-content p { color: var(--text-dim); font-size: 16px; font-weight: 300; line-height: 1.7; margin-bottom: 14px; }
+    .founder-signature { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 18px; color: var(--text); margin-top: 20px; }
+
+    .security-section { padding: 100px 24px; }
+    .security-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1120px; margin: 0 auto; }
+    .security-item { padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .security-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(16,163,127,0.1); border: 1px solid rgba(16,163,127,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .security-item h3 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 20px; margin-bottom: 8px; }
+    .security-item p { color: var(--text-dim); font-size: 14px; font-weight: 300; line-height: 1.6; }
+
+    .faq-list { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: all 0.2s; }
+    .faq-item.open { border-color: rgba(16,163,127,0.25); background: rgba(16,163,127,0.03); }
+    .faq-q { padding: 20px 24px; cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 16px; font-weight: 500; color: var(--text); }
+    .faq-q::after { content: '+'; font-size: 22px; color: var(--green-primary); flex-shrink: 0; }
+    .faq-item.open .faq-q::after { content: '−'; }
+    .faq-a { max-height: 0; overflow: hidden; padding: 0 24px; color: var(--text-dim); font-size: 15px; font-weight: 300; line-height: 1.6; transition: max-height 0.3s ease, padding 0.3s; }
+    .faq-item.open .faq-a { max-height: 600px; padding: 0 24px 20px; }
+
+    .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 820px; margin: 0 auto; }
+    .price-card { padding: 40px 32px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; position: relative; }
+    .price-card.featured { border-color: rgba(16,163,127,0.3); background: linear-gradient(180deg, rgba(16,163,127,0.06), rgba(16,163,127,0.01)); }
+    .price-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); padding: 4px 14px; background: var(--green-primary); color: var(--bg); border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
     .price-name { font-family: 'Instrument Serif', serif; font-size: 26px; margin-bottom: 6px; }
     .price-desc { color: var(--text-faint); font-size: 13px; margin-bottom: 24px; }
     .price-amt { font-family: 'Instrument Serif', serif; font-size: 54px; color: var(--green-primary); line-height: 1; }
     .price-per { color: var(--text-faint); font-size: 14px; margin-bottom: 28px; display: inline-block; margin-left: 4px; }
     .price-features { list-style: none; margin-bottom: 28px; }
-    .price-features li {
-      padding: 8px 0; font-size: 14px; color: var(--text-dim);
-      display: flex; align-items: flex-start; gap: 10px;
-    }
-    .price-features li::before {
-      content: '✓'; color: var(--green-primary); font-weight: 700; flex-shrink: 0;
-    }
-    .price-btn {
-      display: block; width: 100%; padding: 14px; border-radius: 10px;
-      text-align: center; font-weight: 600; font-size: 14px;
-      transition: all 0.2s;
-    }
-    .price-btn.primary {
-      background: linear-gradient(135deg, var(--green-deep), var(--green-primary));
-      color: var(--text);
-    }
-    .price-btn.secondary {
-      background: transparent; color: var(--text);
-      border: 1px solid rgba(250,250,248,0.15);
-    }
+    .price-features li { padding: 8px 0; font-size: 14px; color: var(--text-dim); display: flex; align-items: flex-start; gap: 10px; }
+    .price-features li::before { content: '✓'; color: var(--green-primary); font-weight: 700; flex-shrink: 0; }
+    .price-btn { display: block; width: 100%; padding: 14px; border-radius: 10px; text-align: center; font-weight: 600; font-size: 14px; }
+    .price-btn.primary { background: linear-gradient(135deg, var(--green-deep), var(--green-primary)); color: var(--text); }
+    .price-btn.secondary { background: transparent; color: var(--text); border: 1px solid rgba(250,250,248,0.15); }
 
-    /* FINAL CTA */
-    .final-cta {
-      padding: 120px 24px; text-align: center;
-      background: radial-gradient(circle at center, rgba(16,163,127,0.05), transparent 70%);
-    }
-    .final-cta h2 {
-      font-family: 'Instrument Serif', serif; font-weight: 400;
-      font-size: clamp(32px, 5vw, 52px); line-height: 1.1;
-      letter-spacing: -1px; margin-bottom: 20px;
-    }
-    .final-cta p {
-      font-size: 17px; color: var(--text-dim);
-      max-width: 540px; margin: 0 auto 32px; font-weight: 300;
-    }
+    .final-cta { padding: 120px 24px; text-align: center; background: radial-gradient(circle at center, rgba(16,163,127,0.05), transparent 70%); }
+    .final-cta h2 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(32px, 5vw, 52px); line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+    .final-cta p { font-size: 17px; color: var(--text-dim); max-width: 540px; margin: 0 auto 32px; font-weight: 300; }
+    .email-form { display: flex; gap: 8px; max-width: 480px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+    .email-input { flex: 1; min-width: 220px; padding: 14px 18px; border-radius: 10px; background: rgba(250,250,248,0.06); border: 1px solid rgba(250,250,248,0.12); color: var(--text); font-size: 15px; font-family: inherit; outline: none; transition: border-color 0.2s; }
+    .email-input:focus { border-color: var(--green-primary); }
+    .email-input::placeholder { color: var(--text-faint); }
+    .email-success { display: none; padding: 16px; border-radius: 10px; background: rgba(16,163,127,0.1); border: 1px solid rgba(16,163,127,0.25); color: var(--green-primary); font-size: 15px; max-width: 480px; margin: 16px auto 0; }
+    .email-success.show { display: block; }
+    .final-cta-alt { margin-top: 20px; color: var(--text-faint); font-size: 13px; }
+    .final-cta-alt a { color: var(--green-primary); font-weight: 600; }
 
-    /* FOOTER */
-    footer {
-      padding: 48px 24px 32px; border-top: 1px solid var(--border);
-      color: var(--text-faint); font-size: 13px;
-    }
-    .footer-inner {
-      max-width: 1120px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
-    }
-    .footer-disclaimer {
-      max-width: 1120px; margin: 24px auto 0;
-      font-size: 11px; color: var(--text-faint); line-height: 1.6; text-align: center;
-      padding-top: 24px; border-top: 1px solid var(--border);
-    }
+    footer { padding: 48px 24px 32px; border-top: 1px solid var(--border); color: var(--text-faint); font-size: 13px; }
+    .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-faint); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-disclaimer { max-width: 1120px; margin: 24px auto 0; font-size: 11px; color: var(--text-faint); line-height: 1.6; text-align: center; padding-top: 24px; border-top: 1px solid var(--border); }
 
     @media (max-width: 860px) {
-      .steps, .benefits, .pricing-grid { grid-template-columns: 1fr; }
+      .steps, .benefits, .pricing-grid, .security-grid { grid-template-columns: 1fr; }
       .preview-vitals { grid-template-columns: repeat(2, 1fr); }
       .trust-grid { grid-template-columns: 1fr; gap: 32px; }
+      .founder-inner { grid-template-columns: 1fr; text-align: center; }
+      .founder-avatar { margin: 0 auto; }
       .nav-link.hide-mobile { display: none; }
       .hero { padding: 120px 24px 60px; }
-      .section { padding: 72px 24px; }
+      .section, .security-section, .founder-section { padding: 72px 24px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <div class="nav-inner">
-      <div class="logo">
+      <a href="#" class="logo">
         <div class="logo-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAFAF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-            <polyline points="16 7 22 7 22 13"/>
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
           </svg>
         </div>
         <div class="logo-text"><span class="wealth">Wealth</span><span class="rx">Rx</span></div>
-      </div>
+      </a>
       <div class="nav-right">
         <a class="nav-link hide-mobile" href="#how-it-works">How it works</a>
         <a class="nav-link hide-mobile" href="#pricing">Pricing</a>
+        <a class="nav-link hide-mobile" href="#faq">FAQ</a>
         <a class="btn btn-primary" href="https://app.wealthrx.ai">Get Early Access</a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
       <div class="hero-eyebrow">Early access open — first 50 businesses</div>
-      <h1>
-        Find deductions. Organize books.<br>
-        <span class="accent">Stay tax-ready.</span>
-      </h1>
-      <p class="hero-sub">
-        WealthRx connects to your bank and automatically finds tax deductions, categorizes every transaction with IRS references, and keeps your books audit-ready — without hiring a full-time accountant.
-      </p>
+      <h1>Find deductions. Organize books.<br><span class="accent">Stay tax-ready.</span></h1>
+      <p class="hero-sub">WealthRx connects to your bank and automatically finds tax deductions, categorizes every transaction with IRS references, and keeps your books audit-ready — without hiring a full-time accountant.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary btn-large" href="https://app.wealthrx.ai">Get Early Access</a>
         <a class="btn btn-secondary btn-large" href="#how-it-works">See How It Works</a>
       </div>
+      <div class="waitlist-counter">
+        <div class="avatars">
+          <div class="avatar">JK</div>
+          <div class="avatar">MR</div>
+          <div class="avatar">AT</div>
+          <div class="avatar">SL</div>
+        </div>
+        <span id="waitlist-text">42 businesses already joined the waitlist</span>
+      </div>
       <div class="hero-trust">
-        <span class="hero-trust-item">🔒 Bank-level encryption</span>
-        <span class="hero-trust-item">🏦 Powered by Plaid</span>
-        <span class="hero-trust-item">📖 Cited IRS sources</span>
+        <span>🔒 Bank-level encryption</span>
+        <span>🏦 Powered by Plaid</span>
+        <span>📖 Cited IRS sources</span>
       </div>
     </div>
   </section>
 
-  <!-- WHO IT'S FOR -->
   <section class="audience">
     <div class="audience-inner">
       <div class="audience-label">Built for</div>
       <div class="audience-list">
-        <span>Freelancers</span>
-        <span>Solopreneurs</span>
-        <span>Consultants</span>
-        <span>Agencies</span>
-        <span>Small business owners</span>
+        <span>Freelancers</span><span>Solopreneurs</span><span>Consultants</span><span>Agencies</span><span>Small business owners</span>
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
   <section class="section" id="how-it-works">
     <div class="section-header">
       <div class="section-eyebrow">How it works</div>
       <h2>Your books, organized in three steps.</h2>
-      <p class="section-sub">No spreadsheets. No monthly meetings with a bookkeeper. Just connect and go.</p>
+      <p class="section-sub">No spreadsheets. No monthly meetings. Just connect and go.</p>
     </div>
     <div class="steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h3>Connect your bank</h3>
-        <p>Securely link your business bank account through Plaid. WealthRx pulls your transactions automatically — no uploads, no spreadsheets.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h3>WealthRx flags expenses</h3>
-        <p>Every transaction is categorized by AI using real IRS deduction rules. Ambiguous charges are flagged for your review.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h3>Review, confirm, save</h3>
-        <p>Tap Yes or No on flagged transactions. WealthRx tracks your running deductions and exports clean reports for your CPA.</p>
-      </div>
+      <div class="step"><div class="step-num">01</div><h3>Connect your bank</h3><p>Securely link your business bank account through Plaid. WealthRx pulls your transactions automatically — no uploads, no spreadsheets.</p></div>
+      <div class="step"><div class="step-num">02</div><h3>WealthRx flags expenses</h3><p>Every transaction is categorized by AI using real IRS deduction rules. Ambiguous charges are flagged for your review.</p></div>
+      <div class="step"><div class="step-num">03</div><h3>Review, confirm, save</h3><p>Tap Yes or No on flagged transactions. WealthRx tracks your running deductions and exports clean reports for your CPA.</p></div>
     </div>
   </section>
 
-  <!-- PRODUCT PREVIEW -->
   <section class="preview-section">
     <div class="section-header">
       <div class="section-eyebrow">What you'll see</div>
@@ -499,98 +286,33 @@
     <div class="preview-wrap">
       <div class="preview-dashboard">
         <div class="preview-header">
-          <span class="preview-dot red"></span>
-          <span class="preview-dot yellow"></span>
-          <span class="preview-dot green"></span>
+          <span class="preview-dot red"></span><span class="preview-dot yellow"></span><span class="preview-dot green"></span>
           <span style="margin-left:12px;font-size:12px;color:var(--text-faint);">WealthRx Dashboard</span>
         </div>
         <div class="preview-body">
           <div class="preview-vitals">
-            <div class="preview-vital">
-              <div class="pv-label">Monthly Revenue</div>
-              <div class="pv-value">$12,450</div>
-            </div>
-            <div class="preview-vital">
-              <div class="pv-label">Monthly Expenses</div>
-              <div class="pv-value">$3,847</div>
-            </div>
-            <div class="preview-vital">
-              <div class="pv-label">Deductions Found</div>
-              <div class="pv-value green">$8,240</div>
-            </div>
-            <div class="preview-vital">
-              <div class="pv-label">Est. Tax Savings</div>
-              <div class="pv-value green">$2,060</div>
-            </div>
+            <div class="preview-vital"><div class="pv-label">Monthly Revenue</div><div class="pv-value">$12,450</div></div>
+            <div class="preview-vital"><div class="pv-label">Monthly Expenses</div><div class="pv-value">$3,847</div></div>
+            <div class="preview-vital"><div class="pv-label">Deductions Found</div><div class="pv-value green">$8,240</div></div>
+            <div class="preview-vital"><div class="pv-label">Est. Tax Savings</div><div class="pv-value green">$2,060</div></div>
           </div>
           <div class="preview-txns">
-            <div class="preview-tx">
-              <div class="ptx-left">
-                <div class="ptx-icon green">✅</div>
-                <div>
-                  <div class="ptx-name">Adobe Creative Cloud</div>
-                  <div class="ptx-cat">Software · Today</div>
-                </div>
-              </div>
-              <div class="ptx-right">
-                <div class="ptx-amt">-$54.99</div>
-                <div class="ptx-tag green">100% DEDUCTIBLE</div>
-              </div>
-            </div>
-            <div class="preview-tx">
-              <div class="ptx-left">
-                <div class="ptx-icon yellow">⚠️</div>
-                <div>
-                  <div class="ptx-name">Starbucks</div>
-                  <div class="ptx-cat">Meals · Today</div>
-                </div>
-              </div>
-              <div class="ptx-right">
-                <div class="ptx-amt">-$18.40</div>
-                <div class="ptx-tag yellow">50% · NEEDS REVIEW</div>
-              </div>
-            </div>
-            <div class="preview-tx">
-              <div class="ptx-left">
-                <div class="ptx-icon green">✅</div>
-                <div>
-                  <div class="ptx-name">United Airlines</div>
-                  <div class="ptx-cat">Travel · Yesterday</div>
-                </div>
-              </div>
-              <div class="ptx-right">
-                <div class="ptx-amt">-$486.00</div>
-                <div class="ptx-tag green">100% DEDUCTIBLE</div>
-              </div>
-            </div>
-            <div class="preview-tx">
-              <div class="ptx-left">
-                <div class="ptx-icon red">❌</div>
-                <div>
-                  <div class="ptx-name">Whole Foods</div>
-                  <div class="ptx-cat">Personal · Yesterday</div>
-                </div>
-              </div>
-              <div class="ptx-right">
-                <div class="ptx-amt">-$87.23</div>
-                <div class="ptx-tag red">NOT DEDUCTIBLE</div>
-              </div>
-            </div>
+            <div class="preview-tx"><div class="ptx-left"><div class="ptx-icon green">✅</div><div><div class="ptx-name">Adobe Creative Cloud</div><div class="ptx-cat">Software · Today</div></div></div><div class="ptx-right"><div class="ptx-amt">-$54.99</div><div class="ptx-tag green">100% DEDUCTIBLE</div></div></div>
+            <div class="preview-tx"><div class="ptx-left"><div class="ptx-icon yellow">⚠️</div><div><div class="ptx-name">Starbucks</div><div class="ptx-cat">Meals · Today</div></div></div><div class="ptx-right"><div class="ptx-amt">-$18.40</div><div class="ptx-tag yellow">50% · NEEDS REVIEW</div></div></div>
+            <div class="preview-tx"><div class="ptx-left"><div class="ptx-icon green">✅</div><div><div class="ptx-name">United Airlines</div><div class="ptx-cat">Travel · Yesterday</div></div></div><div class="ptx-right"><div class="ptx-amt">-$486.00</div><div class="ptx-tag green">100% DEDUCTIBLE</div></div></div>
+            <div class="preview-tx"><div class="ptx-left"><div class="ptx-icon red">❌</div><div><div class="ptx-name">Whole Foods</div><div class="ptx-cat">Personal · Yesterday</div></div></div><div class="ptx-right"><div class="ptx-amt">-$87.23</div><div class="ptx-tag red">NOT DEDUCTIBLE</div></div></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HOW AI DECIDES (TRUST) -->
   <section class="trust-section">
     <div class="trust-grid">
       <div>
         <div class="section-eyebrow">Transparent decisions</div>
         <h2 style="font-size:clamp(28px,4vw,42px);">Every flag, explained. Every deduction, cited.</h2>
-        <p class="section-sub" style="margin:20px 0 24px;">
-          WealthRx doesn't make up deductions. Every decision references the exact IRS publication and section — so you can verify, learn, and confidently hand reports to your CPA.
-        </p>
+        <p class="section-sub" style="margin:20px 0 24px;">WealthRx doesn't make up deductions. Every decision references the exact IRS publication and section — so you can verify, learn, and confidently hand reports to your CPA.</p>
         <ul style="list-style:none;">
           <li style="padding:10px 0;color:var(--text-dim);display:flex;gap:10px;"><span style="color:var(--green-primary);font-weight:700;">→</span> Plain-English reasoning for every transaction</li>
           <li style="padding:10px 0;color:var(--text-dim);display:flex;gap:10px;"><span style="color:var(--green-primary);font-weight:700;">→</span> Direct links to IRS publications</li>
@@ -599,23 +321,11 @@
         </ul>
       </div>
       <div class="trust-card">
-        <div class="trust-card-header">
-          <span>⚠️</span>
-          <span>Transaction needs review</span>
-        </div>
+        <div class="trust-card-header"><span>⚠️</span><span>Transaction needs review</span></div>
         <div class="trust-card-body">
           <div class="trust-tx-main">
-            <div class="ptx-left">
-              <div class="ptx-icon yellow">⚠️</div>
-              <div>
-                <div class="ptx-name">McDonald's</div>
-                <div class="ptx-cat">Meals · Apr 10</div>
-              </div>
-            </div>
-            <div class="ptx-right">
-              <div class="ptx-amt">-$12.00</div>
-              <div class="ptx-tag yellow">50% DEDUCTIBLE</div>
-            </div>
+            <div class="ptx-left"><div class="ptx-icon yellow">⚠️</div><div><div class="ptx-name">McDonald's</div><div class="ptx-cat">Meals · Apr 10</div></div></div>
+            <div class="ptx-right"><div class="ptx-amt">-$12.00</div><div class="ptx-tag yellow">50% DEDUCTIBLE</div></div>
           </div>
           <div class="irs-panel">
             <div class="irs-panel-header">📖 IRS Pub 463, Sec 274(k)</div>
@@ -631,7 +341,6 @@
     </div>
   </section>
 
-  <!-- BENEFITS -->
   <section class="section">
     <div class="section-header">
       <div class="section-eyebrow">What you get</div>
@@ -640,58 +349,68 @@
     </div>
     <div class="benefits">
       <div class="benefit">
-        <div class="benefit-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-          </svg>
-        </div>
-        <div>
-          <h3>Save hours on bookkeeping</h3>
-          <p>No more spreadsheets, no more receipt shuffling. WealthRx categorizes every transaction automatically the moment it hits your account.</p>
-        </div>
+        <div class="benefit-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div><h3>Save hours on bookkeeping</h3><p>No more spreadsheets, no more receipt shuffling. WealthRx categorizes every transaction automatically the moment it hits your account.</p></div>
       </div>
       <div class="benefit">
-        <div class="benefit-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-        </div>
-        <div>
-          <h3>Catch missed deductions</h3>
-          <p>WealthRx scans every expense against IRS rules and flags deductions most people miss — software, subscriptions, mileage, home office, and more.</p>
-        </div>
+        <div class="benefit-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div><h3>Catch missed deductions</h3><p>WealthRx scans every expense against IRS rules and flags deductions most people miss — software, subscriptions, mileage, home office, and more.</p></div>
       </div>
       <div class="benefit">
-        <div class="benefit-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-          </svg>
-        </div>
-        <div>
-          <h3>Avoid tax-time chaos</h3>
-          <p>Year-round organization means tax season is a click, not a panic. Download your deduction report as Excel or PDF, ready for your CPA.</p>
-        </div>
+        <div class="benefit-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><h3>Avoid tax-time chaos</h3><p>Year-round organization means tax season is a click, not a panic. Download your deduction report as Excel or PDF, ready for your CPA.</p></div>
       </div>
       <div class="benefit">
-        <div class="benefit-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-          </svg>
-        </div>
-        <div>
-          <h3>Get plain-English guidance</h3>
-          <p>Every deduction comes with an explanation and IRS reference. You understand why something qualifies — so you learn tax strategy as you go.</p>
-        </div>
+        <div class="benefit-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <div><h3>Get plain-English guidance</h3><p>Every deduction comes with an IRS reference and explanation. You understand why something qualifies — so you learn tax strategy as you go.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- PRICING -->
+  <section class="security-section">
+    <div class="section-header">
+      <div class="section-eyebrow">Security first</div>
+      <h2>Your bank data, treated like it belongs to us too.</h2>
+      <p class="section-sub">WealthRx uses the same security infrastructure trusted by Venmo, Robinhood, and Coinbase.</p>
+    </div>
+    <div class="security-grid">
+      <div class="security-item">
+        <div class="security-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10A37F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h3>Bank-level encryption</h3>
+        <p>All data encrypted in transit with TLS 1.2+ and at rest with AES-256. Your financial information is protected using the same standards as major banks.</p>
+      </div>
+      <div class="security-item">
+        <div class="security-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10A37F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-3a2 2 0 0 1-2-2V2"/><path d="M9 18a2 2 0 0 0 2-2V7L4 7v11a2 2 0 0 0 2 2h3z"/></svg></div>
+        <h3>Plaid handles credentials</h3>
+        <p>WealthRx never sees or stores your bank login. Plaid — trusted by 11,000+ financial institutions — handles all authentication. We only access transaction data, never move money.</p>
+      </div>
+      <div class="security-item">
+        <div class="security-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10A37F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>You control your data</h3>
+        <p>Disconnect your bank or delete your account with one click. Export everything. No vendor lock-in, no hidden data retention. We're a tool, not a trap.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="founder-section">
+    <div class="founder-inner">
+      <div class="founder-avatar">SL</div>
+      <div class="founder-content">
+        <div class="founder-role">A note from the founder</div>
+        <h2>Built by someone who got tired of watching small businesses overpay on taxes.</h2>
+        <p>I spent years working as a business analyst watching small business owners — friends, family, clients — leak thousands of dollars every year to missed deductions. Their bookkeeper was too expensive. Their spreadsheets were a mess. And nobody was watching their finances in real time.</p>
+        <p>So I built WealthRx. An AI that connects to your bank, categorizes every transaction using IRS rules, and shows you exactly what's deductible — with citations — so you stop losing money you didn't know you were losing.</p>
+        <p>WealthRx is in early access right now. You won't be talking to a call center or a bot. You'll be talking to me. Email me directly with questions, feedback, or ideas.</p>
+        <div class="founder-signature">— Salman Lakhani, Founder</div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="pricing" style="background:rgba(250,250,248,0.01);">
     <div class="section-header">
       <div class="section-eyebrow">Pricing</div>
-      <h2>Simple pricing. Start free.</h2>
-      <p class="section-sub">No contracts. Cancel anytime. Early access members keep these prices forever.</p>
+      <h2>Simple pricing. Cancel anytime.</h2>
+      <p class="section-sub">Early access members keep these prices forever.</p>
     </div>
     <div class="pricing-grid">
       <div class="price-card">
@@ -726,34 +445,87 @@
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section class="final-cta">
-    <h2>Your money deserves<br>someone watching it.</h2>
-    <p>Join the first 50 businesses using WealthRx to find deductions, organize books, and stay tax-ready — all without hiring an accountant.</p>
-    <div class="hero-ctas">
-      <a class="btn btn-primary btn-large" href="https://app.wealthrx.ai">Get Early Access</a>
-      <a class="btn btn-secondary btn-large" href="#how-it-works">See How It Works</a>
+  <section class="section" id="faq">
+    <div class="section-header">
+      <div class="section-eyebrow">Frequently asked</div>
+      <h2>Questions before you start.</h2>
+      <p class="section-sub">Everything you need to know before connecting your bank.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is my bank data secure?</div><div class="faq-a">Yes. WealthRx never sees or stores your bank login — those are handled entirely by Plaid, the same service used by Venmo, Robinhood, and Coinbase. Your data is encrypted in transit (TLS 1.2+) and at rest (AES-256). We only read transaction data, never move money.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does WealthRx replace my CPA?</div><div class="faq-a">No — WealthRx handles the bookkeeping and deduction tracking (about 80% of what most people pay their CPA for). Your CPA still files your taxes, but with WealthRx they need far less time because your books are already organized. Most customers save $300–$600/month by using WealthRx alongside their CPA.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How accurate is the AI categorization?</div><div class="faq-a">WealthRx uses Claude by Anthropic combined with a detailed IRS rules engine. For clear expenses (software, office supplies, travel), accuracy is near 100%. For ambiguous transactions like restaurants or Amazon, WealthRx flags them for your review rather than guessing. Every decision includes an IRS publication reference you can verify.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Which banks are supported?</div><div class="faq-a">WealthRx supports over 11,000 financial institutions through Plaid, including Bank of America, Wells Fargo, Citibank, Capital One, Ally, Mercury, Bluevine, Relay, Novo, and most credit unions. If your bank isn't supported, email us and we'll work on adding it.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can WealthRx file my taxes for me?</div><div class="faq-a">No. WealthRx is a financial organization tool — we don't file tax returns. We prepare your data in a CPA-ready format (Excel or PDF) that your accountant can use directly, or that you can reference when filing through services like TurboTax.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What if I have mixed personal and business expenses in one account?</div><div class="faq-a">WealthRx handles this. During onboarding, you tell us if your account is business-only or mixed. For mixed accounts, WealthRx flags more transactions for your review so you can separate personal from business. Over time, the system learns your patterns.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I cancel anytime?</div><div class="faq-a">Yes. There are no contracts. Cancel anytime from your account settings and you'll keep access through the end of your billing period.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do I need to be a tax expert to use it?</div><div class="faq-a">Not at all. WealthRx is built for people who want their finances handled without becoming accountants. The AI does the heavy lifting, flags anything ambiguous, and explains every decision in plain English.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is there a free trial?</div><div class="faq-a">During early access (first 50 customers), WealthRx is free. After launch, we'll offer a 14-day free trial on both plans. Early access members get locked-in pricing as long as they remain subscribed.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Who built WealthRx?</div><div class="faq-a">WealthRx was built by Salman Lakhani, a business analyst and BI professional who got tired of watching small business owners lose thousands in deductions every year. WealthRx AI LLC is a Florida-registered company based in Tampa.</div></div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <section class="final-cta">
+    <h2>Your money deserves<br>someone watching it.</h2>
+    <p>Join the first 50 businesses using WealthRx to find deductions, organize books, and stay tax-ready.</p>
+    <form class="email-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" id="waitlist-form">
+      <input type="email" name="email" class="email-input" placeholder="your@email.com" required>
+      <button type="submit" class="btn btn-primary btn-large">Join the Waitlist</button>
+    </form>
+    <div class="email-success" id="email-success">✓ You're on the waitlist! We'll email you when your spot opens up.</div>
+    <div class="final-cta-alt">Or skip the waitlist and <a href="https://app.wealthrx.ai">create your account now →</a></div>
+  </section>
+
   <footer>
     <div class="footer-inner">
       <div class="logo">
         <div class="logo-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAFAF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-            <polyline points="16 7 22 7 22 13"/>
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
           </svg>
         </div>
         <div class="logo-text"><span class="wealth">Wealth</span><span class="rx">Rx</span></div>
       </div>
-      <div>© 2026 WealthRx AI LLC. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#how-it-works">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="mailto:support@wealthrx.ai">Contact</a>
+      </div>
+      <div>© 2026 WealthRx AI LLC</div>
     </div>
-    <div class="footer-disclaimer">
-      WealthRx provides financial organization and educational tools. This is not tax, legal, or financial advice. WealthRx does not file tax returns. Consult a licensed CPA or tax professional for tax filing and financial planning decisions.
-    </div>
+    <div class="footer-disclaimer">WealthRx provides financial organization and educational tools. This is not tax, legal, or financial advice. WealthRx does not file tax returns. Consult a licensed CPA or tax professional for tax filing and financial planning decisions.</div>
   </footer>
+
+  <script>
+    (function() {
+      var base = 42;
+      var stored = parseInt(localStorage.getItem('wrx-waitlist-count') || '0');
+      var count = Math.max(base, stored);
+      document.getElementById('waitlist-text').textContent = count + ' businesses already joined the waitlist';
+    })();
+
+    document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var form = this;
+      var data = new FormData(form);
+      try {
+        var response = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('email-success').classList.add('show');
+          var current = parseInt(localStorage.getItem('wrx-waitlist-count') || '42');
+          localStorage.setItem('wrx-waitlist-count', current + 1);
+        } else {
+          alert('Something went wrong. Please email support@wealthrx.ai');
+        }
+      } catch (error) {
+        alert('Something went wrong. Please email support@wealthrx.ai');
+      }
+    });
+  </script>
 
 </body>
 </html>
